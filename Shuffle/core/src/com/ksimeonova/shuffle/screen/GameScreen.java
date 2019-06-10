@@ -9,6 +9,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.ksimeonova.shuffle.Shuffle;
+import com.ksimeonova.shuffle.model.Enemy;
 import com.ksimeonova.shuffle.model.Player;
 
 public class GameScreen implements Screen {
@@ -17,7 +18,9 @@ public class GameScreen implements Screen {
     private Stage stage;
     private World physicalWorld;
     private Player player;
+    private Enemy enemy;
     private Texture playerImage;
+    private Texture enemyImage;
     private float worldWidth;
 
     public GameScreen(Shuffle shuffle) {
@@ -26,15 +29,20 @@ public class GameScreen implements Screen {
 
     @Override
     public void show() {
-        playerImage = new Texture("Inner_Sakura.png");
         physicalWorld = new World(new Vector2(0, -0.5f), false);
+
+        playerImage = new Texture("Inner_Sakura.png");
         this.player = new Player(shuffle, physicalWorld, 5, Shuffle.WORLD_HEIGHT / 2, 5, playerImage);
+
+        enemyImage = new Texture("Naruto.jpg");
+        this.enemy = new Enemy(shuffle, physicalWorld, 10,Shuffle.WORLD_HEIGHT / 2, 4, 8, enemyImage);
 
         float ratio = (float) Gdx.graphics.getHeight() / (float) Gdx.graphics.getWidth();
         this.worldWidth = Shuffle.WORLD_HEIGHT / ratio;
 
         this.stage = new Stage(new StretchViewport(worldWidth, Shuffle.WORLD_HEIGHT));
         this.stage.addActor(player);
+        this.stage.addActor(enemy);
     }
 
     @Override
@@ -70,5 +78,6 @@ public class GameScreen implements Screen {
     @Override
     public void dispose() {
         playerImage.dispose();
+        enemyImage.dispose();
     }
 }
