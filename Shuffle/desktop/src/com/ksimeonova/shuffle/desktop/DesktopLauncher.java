@@ -7,6 +7,8 @@ import com.ksimeonova.shuffle.Shuffle;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+		config.width = (int)Shuffle.WIDTH / 4;
+		config.height = (int)Shuffle.HEIGHT / 4;
 		new LwjglApplication(new Shuffle(), config);
 	}
 }
