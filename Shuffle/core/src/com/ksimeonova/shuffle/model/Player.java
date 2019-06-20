@@ -17,10 +17,11 @@ import static com.ksimeonova.shuffle.game.GameWorld.GAME_COLORS;
 
 public class Player extends Image {
 
+    public static final float FORCE_Y = 150f;
+
     private Shuffle shuffle;
     private World physicalWorld;
     private Body body;
-    private boolean transition;
 
     public Player(Shuffle shuffle, World physicalWorld, float x, float y, float size, Texture texture){
         super(texture);
@@ -64,6 +65,15 @@ public class Player extends Image {
 
     public void move(){
         this.setColor(GAME_COLORS.get(new Random().nextInt(GAME_COLORS.size())));
+    }
+
+    public void moveUp(){
+        body.setLinearVelocity(body.getLinearVelocity().x,0);
+        body.applyForceToCenter(0, FORCE_Y, true);
+    }
+
+    public void moveDown(){
+        System.out.println("Move Down");
     }
 
     public void die(){

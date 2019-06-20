@@ -1,6 +1,7 @@
 package com.ksimeonova.shuffle.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
@@ -24,10 +25,10 @@ public class GameWorld {
     public static final String PLAYER_IMAGE_NAME = "box.jpg";
     public static final int PLAYER_POSITION = 5;
     public static final int PLAYER_SIZE = 1;
-    public static final int ENEMY_POSITION = 10;
+    public static final int ENEMY_POSITION = 20;
     public static final int ENEMIES_DISTANCE = 15;
     public static final List<Color> GAME_COLORS = Collections.unmodifiableList(Arrays.asList(Color.BLUE, Color.YELLOW, Color.GREEN, Color.PINK));
-    public static final int VELOCITY_ITERATIONS = 4;
+    public static final int VELOCITY_ITERATIONS = 6;
     public static final int POSITION_ITERATIONS = 2;
     public static final int CAMERA_MOVEMENT_SIZE = 5;
 
@@ -73,6 +74,15 @@ public class GameWorld {
     public void update() {
         this.stage.act();
         this.stage.getCamera().position.x = player.getX() + CAMERA_MOVEMENT_SIZE;
+
+        if(Gdx.input.isKeyPressed(Input.Keys.UP)){
+            player.moveUp();
+        }
+
+        if(Gdx.input.isKeyPressed(Input.Keys.DOWN)){
+            player.moveDown();
+        }
+
     }
 
 
