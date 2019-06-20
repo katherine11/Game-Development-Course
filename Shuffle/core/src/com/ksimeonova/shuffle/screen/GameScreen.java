@@ -13,7 +13,7 @@ import com.ksimeonova.shuffle.listener.Box2DContactListener;
 public class GameScreen implements Screen {
 
     private Shuffle shuffle;
-    private OrthographicCamera camera = new OrthographicCamera();
+    private OrthographicCamera camera;
     private World physicalWorld;
     private GameWorld gameWorld;
 
@@ -29,6 +29,7 @@ public class GameScreen implements Screen {
         physicalWorld.setContactListener(new Box2DContactListener());
 
         gameWorld = new GameWorld(shuffle);
+        camera = new OrthographicCamera();
         camera.setToOrtho(false, Shuffle.WIDTH, Shuffle.HEIGHT);
 
     }
