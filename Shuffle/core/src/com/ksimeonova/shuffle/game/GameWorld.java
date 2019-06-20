@@ -28,7 +28,7 @@ public class GameWorld {
     public static final int PLAYER_SIZE = 1;
     public static final int ENEMY_POSITION = 20;
     public static final int ENEMIES_DISTANCE = 15;
-    public static final List<Color> GAME_COLORS = Collections.unmodifiableList(Arrays.asList(Color.BLUE, Color.YELLOW, Color.GREEN, Color.PINK));
+    public static final List<Color> GAME_COLORS = Arrays.asList(Color.BLUE, Color.YELLOW, Color.GREEN, Color.PINK);
     public static final int VELOCITY_ITERATIONS = 6;
     public static final int POSITION_ITERATIONS = 2;
     public static final int CAMERA_MOVEMENT_SIZE = 5;
