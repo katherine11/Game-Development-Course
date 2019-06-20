@@ -19,6 +19,7 @@ public class Player extends Image {
     private Shuffle shuffle;
     private World physicalWorld;
     private Body body;
+    private boolean transition;
 
     public Player(Shuffle shuffle, World physicalWorld, float x, float y, float size, Texture texture){
         super(texture);

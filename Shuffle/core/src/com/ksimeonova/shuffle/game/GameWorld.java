@@ -27,6 +27,9 @@ public class GameWorld {
     public static final int ENEMY_POSITION = 10;
     public static final int ENEMIES_DISTANCE = 15;
     public static final List<Color> GAME_COLORS = Collections.unmodifiableList(Arrays.asList(Color.BLUE, Color.YELLOW, Color.GREEN, Color.PINK));
+    public static final int VELOCITY_ITERATIONS = 4;
+    public static final int POSITION_ITERATIONS = 2;
+    public static final int CAMERA_MOVEMENT_SIZE = 5;
 
     private Shuffle shuffle;
     private World physicalWorld;
@@ -35,40 +38,41 @@ public class GameWorld {
     private List<EnemyColumn> enemyColumns;
     private float worldWidth;
 
-    public GameWorld(Shuffle shuffle){
+    public GameWorld(Shuffle shuffle) {
         this.shuffle = shuffle;
-        this.physicalWorld = new World(new Vector2(0,0),false);
+        this.physicalWorld = new World(new Vector2(0, 0), false);
         this.physicalWorld.setContactListener(new Box2DContactListener());
 
         Texture playerImage = new Texture(PLAYER_IMAGE_NAME);
-        this.player = new Player(shuffle,physicalWorld, PLAYER_POSITION,Shuffle.WORLD_HEIGHT / 2 + 1, PLAYER_SIZE,playerImage);
+        this.player = new Player(shuffle, physicalWorld, PLAYER_POSITION, Shuffle.WORLD_HEIGHT / 2 + 1, PLAYER_SIZE, playerImage);
         this.player.setColor(GAME_COLORS.get(new Random().nextInt(GAME_COLORS.size())));
 
-        float ratio = (float) Gdx.graphics.getHeight() / (float)Gdx.graphics.getWidth();
+        float ratio = (float) Gdx.graphics.getHeight() / (float) Gdx.graphics.getWidth();
         this.worldWidth = Shuffle.WORLD_HEIGHT / ratio;
-        this.stage = new Stage(new StretchViewport(worldWidth,Shuffle.WORLD_HEIGHT));
+        this.stage = new Stage(new StretchViewport(worldWidth, Shuffle.WORLD_HEIGHT));
         this.stage.addActor(player);
 
         this.initEnemies();
     }
 
-    private void initEnemies(){
-            enemyColumns = new ArrayList<EnemyColumn>(COLUMNS_NUMBER);
-            EnemyColumn first = new EnemyColumn(shuffle,physicalWorld,stage, ENEMY_POSITION);
-            enemyColumns.add(first);
-            for(int i = 1; i < COLUMNS_NUMBER; i++){
-                EnemyColumn enemyColumn = new EnemyColumn(shuffle,physicalWorld,stage,enemyColumns.get(i -1).getX() + ENEMIES_DISTANCE);
-                enemyColumns.add(enemyColumn);
-            }
+    private void initEnemies() {
+        enemyColumns = new ArrayList<EnemyColumn>(COLUMNS_NUMBER);
+        EnemyColumn first = new EnemyColumn(shuffle, physicalWorld, stage, ENEMY_POSITION);
+        enemyColumns.add(first);
+        for (int i = 1; i < COLUMNS_NUMBER; i++) {
+            EnemyColumn enemyColumn = new EnemyColumn(shuffle, physicalWorld, stage, enemyColumns.get(i - 1).getX() + ENEMIES_DISTANCE);
+            enemyColumns.add(enemyColumn);
+        }
     }
 
-    public void render(){
+    public void render() {
         this.stage.draw();
-        physicalWorld.step(Gdx.graphics.getDeltaTime(),6,2);
+        physicalWorld.step(Gdx.graphics.getDeltaTime(), VELOCITY_ITERATIONS, POSITION_ITERATIONS);
     }
 
-    public void update(){
+    public void update() {
         this.stage.act();
+        this.stage.getCamera().position.x = player.getX() + CAMERA_MOVEMENT_SIZE;
     }
 
 
