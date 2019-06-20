@@ -22,6 +22,12 @@ public class GameWorld {
 
     public static final int COLUMNS_NUMBER = 8;
     public static final String PLAYER_IMAGE_NAME = "box.jpg";
+    public static final int PLAYER_POSITION = 5;
+    public static final int PLAYER_SIZE = 1;
+    public static final int ENEMY_POSITION = 10;
+    public static final int ENEMIES_DISTANCE = 15;
+    public static final List<Color> GAME_COLORS = Collections.unmodifiableList(Arrays.asList(Color.BLUE, Color.BLACK, Color.GREEN, Color.PINK));
+
     private Shuffle shuffle;
     private World physicalWorld;
     private Player player;
@@ -35,8 +41,8 @@ public class GameWorld {
         this.physicalWorld.setContactListener(new Box2DContactListener());
 
         Texture playerImage = new Texture(PLAYER_IMAGE_NAME);
-        this.player = new Player(shuffle,physicalWorld, 5,Shuffle.WORLD_HEIGHT / 2,1,playerImage);
-        this.player.setColor(Color.PINK);
+        this.player = new Player(shuffle,physicalWorld, PLAYER_POSITION,Shuffle.WORLD_HEIGHT / 2 + 1, PLAYER_SIZE,playerImage);
+        this.player.setColor(GAME_COLORS.get(new Random().nextInt(GAME_COLORS.size())));
 
         float ratio = (float) Gdx.graphics.getHeight() / (float)Gdx.graphics.getWidth();
         this.worldWidth = Shuffle.WORLD_HEIGHT / ratio;
@@ -48,10 +54,10 @@ public class GameWorld {
 
     private void initEnemies(){
             enemyColumns = new ArrayList<EnemyColumn>(COLUMNS_NUMBER);
-            EnemyColumn first = new EnemyColumn(shuffle,physicalWorld,stage,10);
+            EnemyColumn first = new EnemyColumn(shuffle,physicalWorld,stage, ENEMY_POSITION);
             enemyColumns.add(first);
             for(int i = 1; i < COLUMNS_NUMBER; i++){
-                EnemyColumn enemyColumn = new EnemyColumn(shuffle,physicalWorld,stage,enemyColumns.get(i -1).getX() + 15);
+                EnemyColumn enemyColumn = new EnemyColumn(shuffle,physicalWorld,stage,enemyColumns.get(i -1).getX() + ENEMIES_DISTANCE);
                 enemyColumns.add(enemyColumn);
             }
     }

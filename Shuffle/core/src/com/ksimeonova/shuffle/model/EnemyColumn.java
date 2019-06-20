@@ -14,6 +14,10 @@ import static com.ksimeonova.shuffle.game.GameWorld.GAME_COLORS;
 public class EnemyColumn {
 
     public static final String ENEMY_IMAGE_NAME = "column.png";
+    public static final float ENEMY_COLUMN_WIDTH = 0.5f;
+    public static final int ENEMY_COLUMN_HEIGHT = 4;
+    public static final int ENEMY_COLUMNS_NUMBER = 4;
+    public static final int ENEMY_COLUMNS_COUNT = 5;
 
     private Shuffle shuffle;
     private World physicalWorld;
@@ -32,10 +36,11 @@ public class EnemyColumn {
     private void initEnemies(){
         this.enemies = new ArrayList<Enemy>();
 
-        for(int i = 0; i <= 5; i++){
+        for(int i = 0; i <= ENEMY_COLUMNS_COUNT; i++){
                 Texture texture = new Texture(ENEMY_IMAGE_NAME);
-                Enemy enemy = new Enemy(shuffle, physicalWorld, x, i * 4 + 2, 0.5f, 4, texture);
-                enemy.setColor(Color.PINK);
+                Enemy enemy = new Enemy(shuffle, physicalWorld, x, i * ENEMY_COLUMNS_NUMBER + 2,
+                        ENEMY_COLUMN_WIDTH, ENEMY_COLUMN_HEIGHT, texture);
+                enemy.setColor(GAME_COLORS.get(new Random().nextInt(GAME_COLORS.size())));
                 enemies.add(enemy);
         }
 
