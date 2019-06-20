@@ -1,6 +1,5 @@
 package com.ksimeonova.shuffle.model;
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -8,6 +7,9 @@ import com.ksimeonova.shuffle.Shuffle;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+
+import static com.ksimeonova.shuffle.game.GameWorld.GAME_COLORS;
 
 public class EnemyColumn {
 

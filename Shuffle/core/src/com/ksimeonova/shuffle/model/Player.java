@@ -10,6 +10,10 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.ksimeonova.shuffle.Shuffle;
 
+import java.util.Random;
+
+import static com.ksimeonova.shuffle.game.GameWorld.GAME_COLORS;
+
 public class Player extends Image {
 
     private Shuffle shuffle;
@@ -54,5 +58,16 @@ public class Player extends Image {
     public void act(float delta) {
         this.setPosition(body.getPosition().x - getWidth() / 2,body.getPosition().y - getHeight() / 2);
         this.setRotation(body.getAngle() * MathUtils.radiansToDegrees);
+    }
+
+    public void move(){
+        System.out.println("Move");
+        this.setColor(GAME_COLORS.get(new Random().nextInt(GAME_COLORS.size())));
+//            TODO: make the enemy transparent(if the enemy color is the same as the player color)
+    }
+
+    public void die(){
+        System.out.println("Die");
+//        TODO: proceed to the menu screen
     }
 }

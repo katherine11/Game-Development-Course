@@ -27,8 +27,15 @@ public class Box2DContactListener implements ContactListener {
     }
 
     private void collide(Player player, Enemy enemy) {
-//            TODO: make the enemy transparent(if the enemy color is the same as the player color)
-//            TODO: change the player color/image
+        boolean colorMatch = player.getColor().equals(enemy.getColor());
+
+        if(colorMatch){
+            player.move();
+        }
+        else{
+            player.die();
+        }
+
     }
 
     @Override

@@ -13,7 +13,10 @@ import com.ksimeonova.shuffle.model.EnemyColumn;
 import com.ksimeonova.shuffle.model.Player;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class GameWorld {
 
