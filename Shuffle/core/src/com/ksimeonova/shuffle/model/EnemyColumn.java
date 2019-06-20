@@ -11,6 +11,8 @@ import java.util.List;
 
 public class EnemyColumn {
 
+    public static final String ENEMY_IMAGE_NAME = "column.png";
+
     private Shuffle shuffle;
     private World physicalWorld;
     private List<Enemy> enemies;
@@ -29,7 +31,7 @@ public class EnemyColumn {
         this.enemies = new ArrayList<Enemy>();
 
         for(int i = 0; i <= 5; i++){
-                Texture texture = new Texture("column.png");
+                Texture texture = new Texture(ENEMY_IMAGE_NAME);
                 Enemy enemy = new Enemy(shuffle, physicalWorld, x, i * 4 + 2, 0.5f, 4, texture);
                 enemy.setColor(Color.PINK);
                 enemies.add(enemy);

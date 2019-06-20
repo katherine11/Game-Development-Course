@@ -17,6 +17,8 @@ import java.util.List;
 
 public class GameWorld {
 
+    public static final int COLUMNS_NUMBER = 8;
+    public static final String PLAYER_IMAGE_NAME = "box.jpg";
     private Shuffle shuffle;
     private World physicalWorld;
     private Player player;
@@ -26,10 +28,10 @@ public class GameWorld {
 
     public GameWorld(Shuffle shuffle){
         this.shuffle = shuffle;
-        this.physicalWorld = new World(new Vector2(0,-9.8f),false);
+        this.physicalWorld = new World(new Vector2(0,0),false);
         this.physicalWorld.setContactListener(new Box2DContactListener());
 
-        Texture playerImage = new Texture("box.jpg");
+        Texture playerImage = new Texture(PLAYER_IMAGE_NAME);
         this.player = new Player(shuffle,physicalWorld, 5,Shuffle.WORLD_HEIGHT / 2,1,playerImage);
         this.player.setColor(Color.PINK);
 
@@ -42,12 +44,12 @@ public class GameWorld {
     }
 
     private void initEnemies(){
-            enemyColumns = new ArrayList<EnemyColumn>(8);
+            enemyColumns = new ArrayList<EnemyColumn>(COLUMNS_NUMBER);
             EnemyColumn first = new EnemyColumn(shuffle,physicalWorld,stage,10);
             enemyColumns.add(first);
-            for(int i = 1; i < 8; i++){
-                EnemyColumn enemyWall = new EnemyColumn(shuffle,physicalWorld,stage,enemyColumns.get(i -1).getX() + 15);
-                enemyColumns.add(enemyWall);
+            for(int i = 1; i < COLUMNS_NUMBER; i++){
+                EnemyColumn enemyColumn = new EnemyColumn(shuffle,physicalWorld,stage,enemyColumns.get(i -1).getX() + 15);
+                enemyColumns.add(enemyColumn);
             }
     }
 
