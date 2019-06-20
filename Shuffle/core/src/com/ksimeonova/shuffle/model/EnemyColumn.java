@@ -1,5 +1,6 @@
 package com.ksimeonova.shuffle.model;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -28,8 +29,9 @@ public class EnemyColumn {
         this.enemies = new ArrayList<Enemy>();
 
         for(int i = 0; i <= 5; i++){
-                Texture texture = new Texture("Naruto.jpg");
-                Enemy enemy = new Enemy(shuffle, physicalWorld, x, i * 4 + 2, 2, 4, texture);
+                Texture texture = new Texture("column.png");
+                Enemy enemy = new Enemy(shuffle, physicalWorld, x, i * 4 + 2, 0.5f, 4, texture);
+                enemy.setColor(Color.PINK);
                 enemies.add(enemy);
         }
 

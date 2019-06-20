@@ -1,6 +1,7 @@
 package com.ksimeonova.shuffle.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
@@ -28,8 +29,9 @@ public class GameWorld {
         this.physicalWorld = new World(new Vector2(0,-9.8f),false);
         this.physicalWorld.setContactListener(new Box2DContactListener());
 
-        Texture playerImage = new Texture("Inner_Sakura.png");
-        this.player = new Player(shuffle,physicalWorld, 5,Shuffle.WORLD_HEIGHT / 2,3,playerImage);
+        Texture playerImage = new Texture("box.jpg");
+        this.player = new Player(shuffle,physicalWorld, 5,Shuffle.WORLD_HEIGHT / 2,1,playerImage);
+        this.player.setColor(Color.PINK);
 
         float ratio = (float) Gdx.graphics.getHeight() / (float)Gdx.graphics.getWidth();
         this.worldWidth = Shuffle.WORLD_HEIGHT / ratio;
