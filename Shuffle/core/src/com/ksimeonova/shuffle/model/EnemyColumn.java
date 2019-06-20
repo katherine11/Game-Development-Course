@@ -27,7 +27,7 @@ public class EnemyColumn {
     private void initEnemies(){
         this.enemies = new ArrayList<Enemy>();
 
-        for(int i = 0; i < 5; i++){
+        for(int i = 0; i <= 5; i++){
                 Texture texture = new Texture("Naruto.jpg");
                 Enemy enemy = new Enemy(shuffle, physicalWorld, x, i * 4 + 2, 2, 4, texture);
                 enemies.add(enemy);

@@ -43,6 +43,7 @@ public class Player extends Image {
         fixtureDef.restitution = 0.5f;
 
         body.createFixture(fixtureDef);
+        body.setLinearVelocity(5f,0);
         body.setUserData(this);
 
         bodyShape.dispose();

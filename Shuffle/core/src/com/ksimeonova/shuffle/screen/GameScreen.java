@@ -34,7 +34,7 @@ public class GameScreen implements Screen {
         physicalWorld = new World(new Vector2(0, -0.5f), false);
 
         playerImage = new Texture("Inner_Sakura.png");
-        this.player = new Player(shuffle, physicalWorld, 5, Shuffle.WORLD_HEIGHT / 2, 5, playerImage);
+        this.player = new Player(shuffle, physicalWorld, 5, Shuffle.WORLD_HEIGHT / 2, 3, playerImage);
 
         float ratio = (float) Gdx.graphics.getHeight() / (float) Gdx.graphics.getWidth();
         this.worldWidth = Shuffle.WORLD_HEIGHT / ratio;
