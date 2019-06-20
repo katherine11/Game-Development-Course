@@ -9,12 +9,14 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.ksimeonova.shuffle.Shuffle;
+import com.ksimeonova.shuffle.listener.Box2DContactListener;
 import com.ksimeonova.shuffle.model.Enemy;
 import com.ksimeonova.shuffle.model.EnemyColumn;
 import com.ksimeonova.shuffle.model.Player;
 
 public class GameScreen implements Screen {
 
+//    TODO: remove unused fields
     private Shuffle shuffle;
     private Stage stage;
     private World physicalWorld;
@@ -29,9 +31,12 @@ public class GameScreen implements Screen {
         this.shuffle = shuffle;
     }
 
+//    TODO: extract constants
+
     @Override
     public void show() {
         physicalWorld = new World(new Vector2(0, -0.5f), false);
+        physicalWorld.setContactListener(new Box2DContactListener());
 
         playerImage = new Texture("Inner_Sakura.png");
         this.player = new Player(shuffle, physicalWorld, 5, Shuffle.WORLD_HEIGHT / 2, 3, playerImage);
