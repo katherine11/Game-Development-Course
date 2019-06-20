@@ -39,4 +39,7 @@ public class EnemyColumn {
 
     }
 
+    public float getX() {
+        return x;
+    }
 }
