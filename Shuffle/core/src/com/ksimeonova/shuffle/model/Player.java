@@ -61,9 +61,7 @@ public class Player extends Image {
     }
 
     public void move(){
-        System.out.println("Move");
         this.setColor(GAME_COLORS.get(new Random().nextInt(GAME_COLORS.size())));
-//            TODO: make the enemy transparent(if the enemy color is the same as the player color)
     }
 
     public void die(){
