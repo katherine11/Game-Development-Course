@@ -9,6 +9,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.ksimeonova.shuffle.Shuffle;
+import com.ksimeonova.shuffle.screen.MenuScreen;
 
 import java.util.Random;
 
@@ -66,7 +67,7 @@ public class Player extends Image {
     }
 
     public void die(){
-        System.out.println("Die");
-//        TODO: proceed to the menu screen
+        shuffle.gameState = Shuffle.GAME_STATE.MENU;
+        shuffle.setScreen(new MenuScreen(shuffle));
     }
 }
