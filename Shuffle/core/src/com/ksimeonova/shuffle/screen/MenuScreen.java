@@ -14,14 +14,14 @@ import com.ksimeonova.shuffle.Shuffle;
 public class MenuScreen implements Screen {
 
     public static final String MENU_BACKGROUND_IMAGE_NAME = "menu_background.jpg";
-//    public static final int FONT_SCALE = 30;
-//    public static final String MENU_HEADING = "Shuffle";
+    public static final int FONT_SCALE = 30;
+    public static final String MENU_HEADING = "Shuffle";
 
     private Shuffle shuffle;
     private SpriteBatch batch;
     private OrthographicCamera camera;
     private Texture menuBackground;
-//    private BitmapFont font;
+    private BitmapFont font;
 
     public MenuScreen(Shuffle shuffle){
         this.shuffle = shuffle;
@@ -34,8 +34,9 @@ public class MenuScreen implements Screen {
         this.camera.setToOrtho(false,Shuffle.WIDTH,Shuffle.HEIGHT);
         this.camera.update();
         this.menuBackground = new Texture(MENU_BACKGROUND_IMAGE_NAME);
-//        this.font = new BitmapFont();
-//        this.font.getData().scale(FONT_SCALE);
+
+        this.font = new BitmapFont();
+        this.font.getData().scale(FONT_SCALE);
     }
 
     @Override
@@ -46,7 +47,7 @@ public class MenuScreen implements Screen {
         camera.update();
         this.batch.begin();
         this.batch.draw(menuBackground, 0, 0, Shuffle.WIDTH, Shuffle.HEIGHT);
-//        drawHeading();
+        drawHeading();
         this.batch.end();
 
         if(Gdx.input.justTouched()){
@@ -55,14 +56,12 @@ public class MenuScreen implements Screen {
         }
     }
 
-//    TODO: use another font to render the heading
-//    private void drawHeading(){
-//        font.setColor(new Color(0/255f, 51/255f, 102/255f, 1));
-//        GlyphLayout layout = new GlyphLayout(font, MENU_HEADING);
-//        float fontX = (Shuffle.WIDTH - layout.width)/2;
-//        float fontY = (Shuffle.HEIGHT - layout.height)/2;
-//        font.draw(batch, layout, fontX, fontY);
-//    }
+    private void drawHeading(){
+        font.setColor(new Color(0/255f, 51/255f, 102/255f, 1));
+        GlyphLayout layout = new GlyphLayout(font, MENU_HEADING);
+        float layoutWidth = layout.width;
+        font.draw(batch, layout, camera.position.x - layoutWidth/2, Shuffle.HEIGHT/2);
+    }
 
     @Override
     public void resize(int width, int height) {
