@@ -13,7 +13,7 @@ import static com.ksimeonova.shuffle.game.GameWorld.GAME_COLORS;
 public class Player extends GameActor {
 
     public static final float LINEAR_VELOCITY = 5f;
-    public static final float FORCE_Y = 100f;
+    public static final float FORCE_Y = 150f;
 
     public Player(Shuffle shuffle, World physicalWorld, float x, float y, float size, Texture texture, BodyDef.BodyType bodyType){
         super(shuffle, physicalWorld, x, y,size,size, texture, bodyType);
