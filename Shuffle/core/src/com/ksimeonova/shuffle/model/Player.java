@@ -35,8 +35,6 @@ public class Player extends GameActor {
     }
 
     public void die(){
-        System.out.println("Die");
-
         shuffle.gameState = Shuffle.GAME_STATE.MENU;
         shuffle.setScreen(new MenuScreen(shuffle));
     }

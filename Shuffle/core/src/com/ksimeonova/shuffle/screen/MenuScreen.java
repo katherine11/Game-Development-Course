@@ -14,7 +14,7 @@ import com.ksimeonova.shuffle.Shuffle;
 public class MenuScreen implements Screen {
 
     public static final String MENU_BACKGROUND_IMAGE_NAME = "menu_background.jpg";
-    public static final int FONT_SCALE = 30;
+    public static final int FONT_SCALE = 20;
     public static final String MENU_HEADING = "Shuffle";
 
     private Shuffle shuffle;

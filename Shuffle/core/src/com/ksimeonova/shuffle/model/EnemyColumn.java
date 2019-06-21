@@ -35,7 +35,7 @@ public class EnemyColumn {
     }
 
     private void initEnemies() {
-        this.enemies = new ArrayList<Enemy>();
+        this.enemies = new ArrayList<>();
         Collections.shuffle(GAME_COLORS);
         for (int i = 0; i < ENEMY_COLUMNS_COUNT; i++) {
             Texture texture = new Texture(ENEMY_IMAGE_NAME);

@@ -16,7 +16,6 @@ import com.ksimeonova.shuffle.model.Player;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -59,7 +58,7 @@ public class GameWorld {
     }
 
     private void initEnemies(){
-            enemyColumns = new ArrayList<EnemyColumn>(COLUMNS_NUMBER);
+            enemyColumns = new ArrayList<>(COLUMNS_NUMBER);
             EnemyColumn first = new EnemyColumn(shuffle, physicalWorld,stage, ENEMY_POSITION);
             enemyColumns.add(first);
             for(int i = 1; i < COLUMNS_NUMBER; i++){
@@ -85,8 +84,6 @@ public class GameWorld {
         if(Gdx.input.isKeyPressed(Input.Keys.DOWN)){
             player.moveDown();
         }
-
-
     }
 
 

@@ -57,7 +57,6 @@ public abstract class GameActor extends Image {
     public void act(float delta) {
         this.setPosition(body.getPosition().x - getWidth() / 2, body.getPosition().y - getHeight() / 2);
         this.setRotation(body.getAngle() * MathUtils.radiansToDegrees);
-        System.out.println(getWidth());
     }
 
 }
