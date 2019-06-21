@@ -21,11 +21,9 @@ public class GameScreen implements Screen {
         this.shuffle = shuffle;
     }
 
-//    TODO: extract constants
-
     @Override
     public void show() {
-        physicalWorld = new World(new Vector2(0, -0.5f), false);
+        physicalWorld = new World(new Vector2(0, 0), false);
         physicalWorld.setContactListener(new Box2DContactListener());
 
         gameWorld = new GameWorld(shuffle);
