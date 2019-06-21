@@ -45,7 +45,7 @@ public class GameWorld {
         this.physicalWorld.setContactListener(new Box2DContactListener());
 
         Texture playerImage = new Texture(PLAYER_IMAGE_NAME);
-        this.player = new Player(shuffle, physicalWorld, PLAYER_POSITION_X,Shuffle.WORLD_HEIGHT / 2 + 1,
+        this.player = new Player(shuffle, physicalWorld, PLAYER_POSITION_X, Shuffle.WORLD_HEIGHT / 2,
                 PLAYER_SIZE,playerImage, BodyDef.BodyType.DynamicBody);
         this.player.setColor(GAME_COLORS.get(new Random().nextInt(GAME_COLORS.size())));
 
