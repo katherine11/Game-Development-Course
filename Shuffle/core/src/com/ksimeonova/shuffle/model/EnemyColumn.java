@@ -39,7 +39,7 @@ public class EnemyColumn {
         Collections.shuffle(GAME_COLORS);
         for (int i = 0; i < ENEMY_COLUMNS_COUNT; i++) {
             Texture texture = new Texture(ENEMY_IMAGE_NAME);
-            Enemy enemy = new Enemy(shuffle, physicalWorld, x, i * ENEMY_COLUMN_HEIGHT + ENEMY_COLUMN_HEIGHT / 2,
+            Enemy enemy = new Enemy(shuffle, physicalWorld, x, i * ENEMY_COLUMN_HEIGHT + (float)ENEMY_COLUMN_HEIGHT / 2,
                     ENEMY_COLUMN_WIDTH, ENEMY_COLUMN_HEIGHT, texture, BodyDef.BodyType.StaticBody);
             Color color = GAME_COLORS.get(i);
             enemy.setColor(color);
