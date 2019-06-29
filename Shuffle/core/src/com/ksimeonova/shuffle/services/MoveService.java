@@ -30,12 +30,25 @@ public class MoveService {
         return moveHandler;
     }
 
+//    TODO: Refactor
     private MoveType getMoveType(){
-        if(Gdx.input.isKeyPressed(Input.Keys.UP)){
+        boolean positionUp = false;
+        boolean positionDown = false;
+
+        if(Gdx.input.justTouched()){
+            if(Gdx.input.getX() > Gdx.graphics.getWidth()/2){
+                positionUp = true;
+            }
+            else{
+                positionDown = true;
+            }
+        }
+
+        if(Gdx.input.isKeyPressed(Input.Keys.UP) || positionUp){
             return MoveType.UP;
         }
 
-        if(Gdx.input.isKeyPressed(Input.Keys.DOWN)){
+        if(Gdx.input.isKeyPressed(Input.Keys.DOWN) || positionDown){
             return MoveType.DOWN;
         }
 
