@@ -14,11 +14,14 @@ public class Player extends GameActor {
 
     public static final float LINEAR_VELOCITY = 5f;
     public static final float MOVING_FORCE_UP = 150f;
-    public static final float MOVING_FORCE_DOWN = 150f;
+    public static final float MOVING_FORCE_DOWN = -150f;
+
+    private int score;
 
     public Player(Shuffle shuffle, World physicalWorld, float x, float y, float size, Texture texture, BodyDef.BodyType bodyType){
         super(shuffle, physicalWorld, x, y,size,size, texture, bodyType);
         super.body.setLinearVelocity(LINEAR_VELOCITY, 0);
+        this.score = 0;
     }
 
     @Override
@@ -44,6 +47,7 @@ public class Player extends GameActor {
 
     public void moveOn(){
         this.setColor(GAME_COLORS.get(new Random().nextInt(GAME_COLORS.size())));
+        this.score++;
     }
 
     public void move(float force){
@@ -54,5 +58,9 @@ public class Player extends GameActor {
     public void die(){
         shuffle.gameState = Shuffle.GAME_STATE.MENU;
         shuffle.setScreen(new MenuScreen(shuffle));
+    }
+
+    public int getScore() {
+        return score;
     }
 }

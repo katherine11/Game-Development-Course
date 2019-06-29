@@ -75,12 +75,12 @@ public class GameWorld {
         this.stage.draw();
     }
 
+//    TODO: optimize
     public void update() {
         this.stage.act();
         this.stage.getCamera().position.x = player.getX() + CAMERA_MOVEMENT_SIZE;
         physicalWorld.step(Gdx.graphics.getDeltaTime(), VELOCITY_ITERATIONS, POSITION_ITERATIONS);
 
-//        TODO: make the game playable from mobile device
         this.moveService = new MoveService();
         this.moveHandler = this.moveService.getMoveHandler(player);
         this.moveHandler.move();
@@ -98,6 +98,10 @@ public class GameWorld {
                     enemyColumns.get(enemyColumns.size() - 1).getX() + ENEMIES_DISTANCE);
             enemyColumns.add(enemyColumn);
         }
+    }
+
+    public int getScore(){
+        return this.player.getScore();
     }
 
 }

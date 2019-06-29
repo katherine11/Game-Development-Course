@@ -11,10 +11,6 @@ import com.ksimeonova.shuffle.model.Player;
 
 public class MoveService {
 
-    public MoveService(){
-
-    }
-
     public Movable getMoveHandler(Player player){
         MoveType moveType = getMoveType();
         Movable moveHandler = new MoveRightHandler(player);
