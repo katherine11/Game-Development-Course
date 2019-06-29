@@ -35,11 +35,7 @@ public class Player extends GameActor {
     private boolean isOutOfBoundaries(){
         boolean outOfBoundaries = false;
 
-        if(getY() > Shuffle.WORLD_HEIGHT) {
-            outOfBoundaries = true;
-        }
-
-        if(getY() < 0){
+        if(getY() > Shuffle.WORLD_HEIGHT || getY() < 0) {
             outOfBoundaries = true;
         }
 
