@@ -24,6 +24,7 @@ public class Player extends GameActor {
         this.setColor(GAME_COLORS.get(new Random().nextInt(GAME_COLORS.size())));
     }
 
+//    TODO: extract one method for moveUp and moveDown by using parameter for the forceY
     public void moveUp(){
         body.setLinearVelocity(body.getLinearVelocity().x,0);
         body.applyForceToCenter(0, FORCE_Y, true);

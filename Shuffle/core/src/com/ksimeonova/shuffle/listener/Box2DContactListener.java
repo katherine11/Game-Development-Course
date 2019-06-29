@@ -19,6 +19,7 @@ public class Box2DContactListener implements ContactListener {
         Body bodyA = contact.getFixtureA().getBody();
         Body bodyB = contact.getFixtureB().getBody();
 
+//        TODO: optimize:
         if(bodyA.getUserData() instanceof Player && bodyB.getUserData() instanceof Enemy){
             player = (Player) bodyA.getUserData();
             enemy = (Enemy) bodyB.getUserData();

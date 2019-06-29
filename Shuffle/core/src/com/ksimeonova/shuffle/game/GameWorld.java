@@ -76,7 +76,7 @@ public class GameWorld {
         this.stage.getCamera().position.x = player.getX() + CAMERA_MOVEMENT_SIZE;
         physicalWorld.step(Gdx.graphics.getDeltaTime(), VELOCITY_ITERATIONS, POSITION_ITERATIONS);
 
-
+//        TODO: implement handler methods
         if(Gdx.input.isKeyPressed(Input.Keys.UP)){
             player.moveUp();
         }
