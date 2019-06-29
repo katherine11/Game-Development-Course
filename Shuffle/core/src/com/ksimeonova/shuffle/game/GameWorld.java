@@ -1,7 +1,6 @@
 package com.ksimeonova.shuffle.game;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
@@ -10,9 +9,11 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.ksimeonova.shuffle.Shuffle;
+import com.ksimeonova.shuffle.handler.Movable;
 import com.ksimeonova.shuffle.listener.Box2DContactListener;
 import com.ksimeonova.shuffle.model.EnemyColumn;
 import com.ksimeonova.shuffle.model.Player;
+import com.ksimeonova.shuffle.services.MoveService;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,6 +36,8 @@ public class GameWorld {
     private Shuffle shuffle;
     private World physicalWorld;
     private Player player;
+    private Movable moveHandler;
+    private MoveService moveService;
     private Stage stage;
     private List<EnemyColumn> enemyColumns;
     private float worldWidth;
@@ -77,14 +80,10 @@ public class GameWorld {
         this.stage.getCamera().position.x = player.getX() + CAMERA_MOVEMENT_SIZE;
         physicalWorld.step(Gdx.graphics.getDeltaTime(), VELOCITY_ITERATIONS, POSITION_ITERATIONS);
 
-//        TODO: implement handler methods
-        if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-            player.move(Player.MOVING_FORCE_Y);
-        }
-
-        if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-            player.move(-Player.MOVING_FORCE_Y);
-        }
+//        TODO: make the game playable from mobile device
+        this.moveService = new MoveService();
+        this.moveHandler = this.moveService.getMoveHandler(player);
+        this.moveHandler.move();
 
         addColumn();
     }
