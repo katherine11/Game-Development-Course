@@ -48,6 +48,7 @@ public class MenuScreen implements Screen {
         this.batch.begin();
         this.batch.draw(menuBackground, 0, 0, Shuffle.WIDTH, Shuffle.HEIGHT);
         drawHeading();
+        drawHighScore(shuffle.getHighscore(),batch);
         this.batch.end();
 
         if(Gdx.input.justTouched()){
@@ -61,6 +62,13 @@ public class MenuScreen implements Screen {
         GlyphLayout layout = new GlyphLayout(font, MENU_HEADING);
         float layoutWidth = layout.width;
         font.draw(batch, layout, camera.position.x - layoutWidth/2, Shuffle.HEIGHT/2);
+    }
+
+    private void drawHighScore(int highScore, SpriteBatch batch){
+        font.setColor(new Color(0/255f, 51/255f, 102/255f, 1));
+        GlyphLayout layout = new GlyphLayout(font, "High score: " + highScore);
+        float layoutWidth = layout.width;
+        font.draw(batch, layout, camera.position.x - layoutWidth/2, Shuffle.HEIGHT/2 - 350);
     }
 
     @Override

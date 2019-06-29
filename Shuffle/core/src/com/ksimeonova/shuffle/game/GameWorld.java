@@ -84,7 +84,10 @@ public class GameWorld {
         this.moveService = new MoveService();
         this.moveHandler = this.moveService.getMoveHandler(player);
         this.moveHandler.move();
-
+        if(this.shuffle.getHighscore() < this.player.getScore()){
+            System.out.println("New high score: " + this.player.getScore());
+            this.shuffle.updateHighScore(this.player.getScore());
+        }
         addColumn();
     }
 
