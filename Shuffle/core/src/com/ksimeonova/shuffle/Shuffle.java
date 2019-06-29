@@ -25,10 +25,6 @@ public class Shuffle extends Game {
     public void create() {
         this.highscore = 0;
         if(gameState == GAME_STATE.MENU){
-//            this.preferences = Gdx.app.getPreferences("highscorePreferences");
-//            if(preferences.contains("highscore")) {
-//                this.highscore = preferences.getInteger("highscore");
-//            }
             this.setScreen(new MenuScreen(this));
         }
         else{
