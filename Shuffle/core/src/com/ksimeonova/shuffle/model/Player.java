@@ -20,6 +20,31 @@ public class Player extends GameActor {
         super.body.setLinearVelocity(LINEAR_VELOCITY, 0);
     }
 
+    @Override
+    public void act(float delta) {
+        super.act(delta);
+
+        if(isOutOfBoundaries()){
+            this.die();
+            System.out.println("Out of boundaries");
+        }
+
+    }
+
+    private boolean isOutOfBoundaries(){
+        boolean outOfBoundaries = false;
+
+        if(getY() > Shuffle.WORLD_HEIGHT) {
+            outOfBoundaries = true;
+        }
+
+        if(getY() < 0){
+            outOfBoundaries = true;
+        }
+
+        return outOfBoundaries;
+    }
+
     public void move(){
         this.setColor(GAME_COLORS.get(new Random().nextInt(GAME_COLORS.size())));
     }
