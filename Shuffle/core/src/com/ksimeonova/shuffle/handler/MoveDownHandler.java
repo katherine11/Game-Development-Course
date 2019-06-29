@@ -12,6 +12,6 @@ public class MoveDownHandler implements Movable {
 
     @Override
     public void move() {
-       player.move(-Player.MOVING_FORCE_DOWN);
+       player.move(Player.MOVING_FORCE_DOWN);
     }
 }
