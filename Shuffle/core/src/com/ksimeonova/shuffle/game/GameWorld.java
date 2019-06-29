@@ -39,14 +39,14 @@ public class GameWorld {
     private List<EnemyColumn> enemyColumns;
     private float worldWidth;
 
-    public GameWorld(Shuffle shuffle){
+    public GameWorld(Shuffle shuffle) {
         this.shuffle = shuffle;
         this.physicalWorld = new World(new Vector2(0, 0), false);
         this.physicalWorld.setContactListener(new Box2DContactListener());
 
         Texture playerImage = new Texture(PLAYER_IMAGE_NAME);
-        this.player = new Player(shuffle, physicalWorld, PLAYER_POSITION_X, Shuffle.WORLD_HEIGHT / 2,
-                PLAYER_SIZE,playerImage, BodyDef.BodyType.DynamicBody);
+        this.player = new Player(shuffle, physicalWorld, PLAYER_POSITION_X,
+                Shuffle.WORLD_HEIGHT / 2, PLAYER_SIZE, playerImage, BodyDef.BodyType.DynamicBody);
         this.player.setColor(GAME_COLORS.get(new Random().nextInt(GAME_COLORS.size())));
 
         float ratio = (float) Gdx.graphics.getHeight() / (float) Gdx.graphics.getWidth();
@@ -57,17 +57,18 @@ public class GameWorld {
         this.initEnemies();
     }
 
-    private void initEnemies(){
-            enemyColumns = new ArrayList<>(COLUMNS_NUMBER);
-            EnemyColumn first = new EnemyColumn(shuffle, physicalWorld,stage, ENEMY_POSITION);
-            enemyColumns.add(first);
-            for(int i = 1; i < COLUMNS_NUMBER; i++){
-                EnemyColumn enemyColumn = new EnemyColumn(shuffle, physicalWorld,stage,enemyColumns.get(i -1).getX() + ENEMIES_DISTANCE);
-                enemyColumns.add(enemyColumn);
-            }
+    private void initEnemies() {
+        enemyColumns = new ArrayList<>(COLUMNS_NUMBER);
+        EnemyColumn first = new EnemyColumn(shuffle, physicalWorld, stage, ENEMY_POSITION);
+        enemyColumns.add(first);
+        for (int i = 1; i < COLUMNS_NUMBER; i++) {
+            EnemyColumn enemyColumn = new EnemyColumn(shuffle, physicalWorld, stage,
+                    enemyColumns.get(i - 1).getX() + ENEMIES_DISTANCE);
+            enemyColumns.add(enemyColumn);
+        }
     }
 
-    public void render(){
+    public void render() {
         this.stage.draw();
     }
 
@@ -77,14 +78,27 @@ public class GameWorld {
         physicalWorld.step(Gdx.graphics.getDeltaTime(), VELOCITY_ITERATIONS, POSITION_ITERATIONS);
 
 //        TODO: implement handler methods
-        if(Gdx.input.isKeyPressed(Input.Keys.UP)){
+        if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
             player.moveUp();
         }
 
-        if(Gdx.input.isKeyPressed(Input.Keys.DOWN)){
+        if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
             player.moveDown();
         }
+
+        addColumn();
     }
 
+    private void addColumn() {
+        if (enemyColumns.get(0).getX() < stage.getCamera().position.x - worldWidth / 2) {
+            enemyColumns.remove(0);
+        }
+
+        if (enemyColumns.size() == COLUMNS_NUMBER - 1) {
+            EnemyColumn enemyColumn = new EnemyColumn(shuffle, physicalWorld, stage,
+                    enemyColumns.get(enemyColumns.size() - 1).getX() + ENEMIES_DISTANCE);
+            enemyColumns.add(enemyColumn);
+        }
+    }
 
 }
