@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.ksimeonova.shuffle.Shuffle;
@@ -14,6 +15,8 @@ import com.ksimeonova.shuffle.game.GameWorld;
 import com.ksimeonova.shuffle.listener.Box2DContactListener;
 
 public class GameScreen implements Screen {
+
+    private static final String FONT_TITLE = "font.ttf";
 
     private Shuffle shuffle;
     private OrthographicCamera camera;
@@ -36,9 +39,17 @@ public class GameScreen implements Screen {
         camera.setToOrtho(false, Shuffle.WIDTH, Shuffle.HEIGHT);
 
         this.batch = new SpriteBatch();
-        this.font = new BitmapFont();
-        this.font.getData().scale(8);
+        initFont();
 
+    }
+
+    private void initFont(){
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal(FONT_TITLE));
+        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        parameter.size = 120;
+        this.font = generator.generateFont(parameter);
+        generator.dispose();
+        this.font.setColor(1f, 1f, 1f, 1f);
     }
 
     @Override

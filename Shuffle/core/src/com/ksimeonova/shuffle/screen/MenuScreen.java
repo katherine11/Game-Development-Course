@@ -9,13 +9,14 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.ksimeonova.shuffle.Shuffle;
 
 public class MenuScreen implements Screen {
 
     public static final String MENU_BACKGROUND_IMAGE_NAME = "menu_background.jpg";
-    public static final int FONT_SCALE = 20;
     public static final String MENU_HEADING = "Shuffle";
+    public static final String FONT_TITLE = "font.ttf";
 
     private Shuffle shuffle;
     private SpriteBatch batch;
@@ -34,9 +35,7 @@ public class MenuScreen implements Screen {
         this.camera.setToOrtho(false,Shuffle.WIDTH,Shuffle.HEIGHT);
         this.camera.update();
         this.menuBackground = new Texture(MENU_BACKGROUND_IMAGE_NAME);
-
-        this.font = new BitmapFont();
-        this.font.getData().scale(FONT_SCALE);
+        this.initFont();
     }
 
     @Override
@@ -55,6 +54,16 @@ public class MenuScreen implements Screen {
             shuffle.gameState = Shuffle.GAME_STATE.PLAY;
             shuffle.setScreen(new GameScreen(shuffle));
         }
+    }
+
+    private void initFont(){
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal(FONT_TITLE));
+        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        parameter.size = 150;
+        this.font = generator.generateFont(parameter);
+        generator.dispose();
+
+        font.setColor(0f, 0f, 0f, 1f);
     }
 
     private void drawHeading(){
