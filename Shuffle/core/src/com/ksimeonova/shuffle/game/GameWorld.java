@@ -79,11 +79,11 @@ public class GameWorld {
 
 //        TODO: implement handler methods
         if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-            player.moveUp();
+            player.move(Player.MOVING_FORCE_Y);
         }
 
         if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-            player.moveDown();
+            player.move(-Player.MOVING_FORCE_Y);
         }
 
         addColumn();

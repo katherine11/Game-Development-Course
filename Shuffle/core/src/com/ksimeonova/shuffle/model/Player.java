@@ -13,7 +13,7 @@ import static com.ksimeonova.shuffle.game.GameWorld.GAME_COLORS;
 public class Player extends GameActor {
 
     public static final float LINEAR_VELOCITY = 5f;
-    public static final float FORCE_Y = 150f;
+    public static final float MOVING_FORCE_Y = 150f;
 
     public Player(Shuffle shuffle, World physicalWorld, float x, float y, float size, Texture texture, BodyDef.BodyType bodyType){
         super(shuffle, physicalWorld, x, y,size,size, texture, bodyType);
@@ -45,19 +45,13 @@ public class Player extends GameActor {
         return outOfBoundaries;
     }
 
-    public void move(){
+    public void moveOn(){
         this.setColor(GAME_COLORS.get(new Random().nextInt(GAME_COLORS.size())));
     }
 
-//    TODO: extract one method for moveUp and moveDown by using parameter for the forceY
-    public void moveUp(){
+    public void move(float force){
         body.setLinearVelocity(body.getLinearVelocity().x,0);
-        body.applyForceToCenter(0, FORCE_Y, true);
-    }
-
-    public void moveDown(){
-        body.setLinearVelocity(body.getLinearVelocity().x,0);
-        body.applyForceToCenter(0, -FORCE_Y, true);
+        body.applyForceToCenter(0, force, true);
     }
 
     public void die(){

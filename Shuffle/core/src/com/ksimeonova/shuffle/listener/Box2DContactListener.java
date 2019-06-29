@@ -38,7 +38,7 @@ public class Box2DContactListener implements ContactListener {
         this.colorMatch = player.getColor().equals(enemy.getColor());
 
         if(colorMatch){
-            player.move();
+            player.moveOn();
         }
         else{
             player.die();
